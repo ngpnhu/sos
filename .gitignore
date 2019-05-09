@@ -1,0 +1,5 @@
+env/
+results/
+*.out
+*.log
+__pycache__/
