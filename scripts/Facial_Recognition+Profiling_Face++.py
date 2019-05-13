@@ -123,7 +123,11 @@ master_csv = os.path.join(wdir,"combined_facial_info.csv")
 ## if the master csv does not exist
 if not os.path.isfile(master_csv):
     with open(master_csv, 'w') as f:
+        final_df['Counter']=0
         final_df.to_csv(f, header=True)
 else: ## if master csv exists, just add to existing dataframe
+    curr = pd.read_csv(master_csv)
+    counter=1+curr.Counter.max()
     with open(master_csv, 'a') as f:
-        final_df.to_csv(f, header=False)
+        final_df['Counter']=counter
+        final_df.to_csv(f, header=False,index=False)
